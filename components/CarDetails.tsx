@@ -3,17 +3,28 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-
 import { CarProps } from '@/types';
 import { generateCarImageUrl } from '@/utils';
 
+/**
+ * Represents the properties for the CarDetails component.
+ */
 interface CarDetailsProps {
-  isOpen: boolean;
-  closeModal: () => void;
-  car: CarProps;
+  isOpen: boolean; // Indicates whether the dialog is open or closed.
+  closeModal: () => void; // A function to close the dialog.
+  car: CarProps; // The car object for which details are displayed in the dialog.
 }
 
-const CarDetails = ({ isOpen, closeModal, car }) => {
+/**
+ * A component for displaying details of a car in a dialog.
+ *
+ * @param {CarDetailsProps} props - The component's properties.
+ * @param {boolean} props.isOpen - Indicates whether the dialog is open or closed.
+ * @param {function} props.closeModal - A function to close the dialog.
+ * @param {CarProps} props.car - The car object for which details are displayed.
+ * @returns {JSX.Element} The rendered CarDetails component.
+ */
+const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -95,7 +106,7 @@ const CarDetails = ({ isOpen, closeModal, car }) => {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
 
-export default CarDetails
+export default CarDetails;

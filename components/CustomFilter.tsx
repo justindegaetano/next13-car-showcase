@@ -7,11 +7,25 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CustomFilterProps } from '@/types';
 import { updateSearchParams } from '@/utils';
 
+/**
+ * A custom filter component for selecting filter options.
+ *
+ * @param {CustomFilterProps} props - The component's properties.
+ * @param {string} props.title - The title of the filter.
+ * @param {Array} props.options - The available filter options.
+ * @returns {JSX.Element} The rendered CustomFilter component.
+ */
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
-  const [selected, setSelected] = useState(options[0])
+  const [selected, setSelected] = useState(options[0]);
 
-  const handleUpdateParams = (e: { title: string, value: string }) => {
+  /**
+   * Handles updating the search parameters and the URL when a filter option is selected.
+   * @param {Object} e - The selected filter option.
+   * @param {string} e.title - The title of the selected option.
+   * @param {string} e.value - The value of the selected option.
+   */
+  const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase());
 
     router.push(newPathName, { scroll: false });
@@ -66,7 +80,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
         </div>
       </Listbox>
     </div>
-  )
+  );
 }
 
-export default CustomFilter
+export default CustomFilter;

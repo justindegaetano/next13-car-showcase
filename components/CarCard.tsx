@@ -7,15 +7,26 @@ import CustomButton from './CustomButton';
 import { calculateCarRent, generateCarImageUrl } from '@/utils';
 import CarDetails from './CarDetails';
 
+/**
+ * Represents the properties for the CarCard component.
+ */
 interface CarCardProps {
-  car: CarProps;
+  car: CarProps; // The car object to display in the card.
 }
 
+/**
+ * A card component for displaying car details.
+ *
+ * @param {CarCardProps} props - The component's properties.
+ * @param {CarProps} props.car - The car object to display in the card.
+ * @returns {JSX.Element} The rendered CarCard component.
+ */
 const CarCard = ({ car }: CarCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car;
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // Calculate car rent based on city MPG and year.
   const carRent = calculateCarRent(city_mpg, year);
 
   return (
@@ -58,18 +69,18 @@ const CarCard = ({ car }: CarCardProps) => {
           </div>
         </div>
         <div className='car-card__btn-container'>
-            <CustomButton
-              title='View More'
-              containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
-              textStyles='text-white text-[14px] leading-[17px] font-bold'
-              rightIcon='/right-arrow.svg'
-              handleClick={() => setIsOpen(true)}
-            />
-          </div>
+          <CustomButton
+            title='View More'
+            containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
+            textStyles='text-white text-[14px] leading-[17px] font-bold'
+            rightIcon='/right-arrow.svg'
+            handleClick={() => setIsOpen(true)}
+          />
+        </div>
       </div>
       <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
     </div>
   )
 }
 
-export default CarCard
+export default CarCard;
