@@ -15,6 +15,16 @@ interface CarDetailsProps {
   car: CarProps; // The car object for which details are displayed in the dialog.
 }
 
+const capitalizeFirstLetter = (value: string) => {
+  if (typeof value !== 'string') {
+    value = String(value); // Convert to string if it's not already
+  }
+  return value
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
+}
+
 /**
  * A component for displaying details of a car in a dialog.
  *
@@ -94,7 +104,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       {Object.entries(car).map(([key, value]) => (
                         <div className='flex justify-between gap-5 w-full text-right' key={key}>
                           <h4 className='text-grey capitalize'>{key.split("_").join(" ")}</h4>
-                          <p className='text-black-100 font-semibold'>{value}</p>
+                          <p className='text-black-100 font-semibold'>{capitalizeFirstLetter(value)}</p>
                         </div>
                       ))}
                     </div>
